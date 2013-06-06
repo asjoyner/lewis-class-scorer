@@ -1,0 +1,39 @@
+Lewis Class Scorer for calculating multiple classes of winners of an event.
+
+This is based on the National Sporting Clays Association PDF on Lewis Class
+Scoring, included with this distribution or available here: http://goo.gl/Ys0IK
+
+There are two basic ways to use this code, as a script, or as a module.
+
+Example usage as a stand-alone script:
+- Create a file with scores, with your scoring criteria as space-separated
+  items, from most to least important.  This example uses sporting clays
+  scores, and shots before first miss to break ties.
+  Note: You do not have to sort the input.
+
+42 4 Tim Miller
+47 21 Tim Brooks
+35 6 Aaron Joyner
+
+- Invoke this script and pass the path to that file as an argument:
+./lewis_class.py ./path/to/scores
+- It will print something like this:
+Group 0
+  47 21 Tim Brooks
+  46 06 Bob Fleming
+  46 04 Linc Huffman
+Group 1
+  37 02 Ken Callahan
+  36 03 David Carswell
+  36 00 Ivan Livas
+Group 2
+  25 00 Aaron Carswell
+  24 01 Sasha Glenn
+  24 01 Michael Callahan
+
+Example usage as a module:
+import lewis_class
+scores = [[42, 2, 'Tim Miller'],
+          [47, 21, 'Tim Brooks'],
+          [35, 6, 'Aaron Joyner']]
+classes = lewis_class.LewisClassScorer(scores)
